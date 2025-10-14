@@ -1,8 +1,7 @@
 export default function Progresstracker() {
-    return (
-        <div>
-            <h1>ProgressTracker Componets</h1>
-        </div>
-
-    );
+    return(
+        <>
+        <h1>Progress Tracker</h1>
+        </>
+    )
 }
