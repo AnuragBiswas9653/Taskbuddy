@@ -15,16 +15,36 @@ export default function App() {
   const addTask = (task) => {
     settasks([...tasks,task]);
   }
+
+  const updateTask = (updatedTask,index) => {
+    const newtask = [...tasks];
+    newtask[index] = updatedTask;
+    settasks(newtask);
+  }
+
+  const deleteTask = (index) =>{
+    settasks(tasks.filter((_, i) => i != index));
+  }
   return (
-    <div>
-      <h1>Task Buddy</h1>
-      <p>Your friendly Task Manager</p>
+    <div className='App'>
+      <header>
+      <h1 className='title'>Task Buddy</h1>
+      <p className='tagline'>Your friendly Task Manager</p>
+      </header>
+     
       <Taskform addTask={addTask}/>
       <Tasklist tasks = {tasks} 
       updateTask = {updateTask}
       deleteTask = {deleteTask}/>
-      <Progresstracker />
-      <button>Clear all Tasks</button>
+      <Progresstracker 
+      tasks= {tasks}/>
+    <button onClick={() => {
+  settasks([]);
+  localStorage.removeItem("tasks");
+}}>
+  Clear all Tasks
+</button>
+
     </div>
   )
 }
