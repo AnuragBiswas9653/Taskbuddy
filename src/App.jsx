@@ -2,6 +2,7 @@
 import Taskform from './components/Taskform'
 import Tasklist from './components/Tasklist'
 import Progresstracker from './components/Progresstracker'
+import './Style.css'
 import { useEffect, useState } from 'react'
 
 export default function App() {
@@ -25,6 +26,10 @@ export default function App() {
   const deleteTask = (index) =>{
     settasks(tasks.filter((_, i) => i != index));
   }
+
+  const clearTasks = () => {
+    settasks([]);
+  }
   return (
     <div className='App'>
       <header>
@@ -38,13 +43,8 @@ export default function App() {
       deleteTask = {deleteTask}/>
       <Progresstracker 
       tasks= {tasks}/>
-    <button onClick={() => {
-  settasks([]);
-  localStorage.removeItem("tasks");
-}}>
-  Clear all Tasks
-</button>
-
+      {tasks.length > 0  && (<button onClick={clearTasks} className='clear-btn'> Clear all Tasks </button>)}
+ 
     </div>
   )
 }
